@@ -21,6 +21,7 @@
 		58426B1E2973334400F547E5 /* MovieRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B1D2973334400F547E5 /* MovieRatingView.swift */; };
 		58426B232973361200F547E5 /* SessionInfoTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B222973361200F547E5 /* SessionInfoTag.swift */; };
 		58426B25297337A300F547E5 /* SessionInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B24297337A300F547E5 /* SessionInfoItem.swift */; };
+		58426B272973484600F547E5 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B262973484600F547E5 /* ReusableView.swift */; };
 		587D9E1D2886D780005F9CA8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D9E1C2886D780005F9CA8 /* Theme.swift */; };
 		587D9E212886E2BE005F9CA8 /* PurchaseSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D9E202886E2BE005F9CA8 /* PurchaseSettingsViewController.swift */; };
 		587D9E232886E337005F9CA8 /* PurchaseSettingsMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D9E222886E337005F9CA8 /* PurchaseSettingsMenuItemCell.swift */; };
@@ -60,6 +61,7 @@
 		58426B1D2973334400F547E5 /* MovieRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRatingView.swift; sourceTree = "<group>"; };
 		58426B222973361200F547E5 /* SessionInfoTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInfoTag.swift; sourceTree = "<group>"; };
 		58426B24297337A300F547E5 /* SessionInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInfoItem.swift; sourceTree = "<group>"; };
+		58426B262973484600F547E5 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		587D9E1C2886D780005F9CA8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		587D9E202886E2BE005F9CA8 /* PurchaseSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSettingsViewController.swift; sourceTree = "<group>"; };
 		587D9E222886E337005F9CA8 /* PurchaseSettingsMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSettingsMenuItemCell.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				58426B13297324D000F547E5 /* ViewCode.swift */,
+				58426B262973484600F547E5 /* ReusableView.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				587D9E262886E4AE005F9CA8 /* MenuItem.swift in Sources */,
+				58426B272973484600F547E5 /* ReusableView.swift in Sources */,
 				5881DB55285A4EC800D4B20F /* MoviePosterImageView.swift in Sources */,
 				58A768412853886F007FB4D3 /* Movie.swift in Sources */,
 				589AA1472853852D003C69BE /* AppDelegate.swift in Sources */,

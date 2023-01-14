@@ -24,20 +24,20 @@ class ImageDowload {
 
         DispatchQueue.global(qos: .userInitiated).async {
                   
-//            if let cached = self.cache.cachedResponse(for: request), let image = UIImage(data: cached.data) {
-//                completionQueue.async {
-//                    completionHandler(
-//                        image,
-//                        Metadata(fromCache: true, response: nil),
-//                        nil
-//                    )
-//                }
-//                
-//                debugPrint("Cache hit for \(request.url!.absoluteURL)")
-//                return
-//            }
-//
-//            debugPrint("Cache miss for \(request.url!.absoluteURL)")
+            if let cached = self.cache.cachedResponse(for: request), let image = UIImage(data: cached.data) {
+                completionQueue.async {
+                    completionHandler(
+                        image,
+                        Metadata(fromCache: true, response: nil),
+                        nil
+                    )
+                }
+
+                debugPrint("Cache hit for \(request.url!.absoluteURL)")
+                return
+            }
+
+            debugPrint("Cache miss for \(request.url!.absoluteURL)")
 
             self.session.dataTask(with: request) { [weak self] data, response, error in
                 if let error = error {

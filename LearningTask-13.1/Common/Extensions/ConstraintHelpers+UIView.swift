@@ -134,4 +134,18 @@ extension UIView {
         return constraint
     }
     
+    /// Constrains the height of your view code component by calculating proportionally from the width value
+    ///
+    /// - Parameters:
+    ///     - ratio: The `CGFloat` representing the ratio to apply as a multiplier of the height anchor's value
+    ///
+    /// - Returns: The activated layout constraint's reference
+    ///
+    @discardableResult
+    func constrainHeightProportionally(byApplying ratio: CGFloat = 1) -> NSLayoutConstraint {
+        let constraint = self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: ratio)
+        constraint.isActive = true
+        return constraint
+    }
+    
 }

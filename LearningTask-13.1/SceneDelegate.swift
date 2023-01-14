@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let moviesAPI = MoviesAPI()
         let movieSessionsAPI = MovieSessionsAPI()
         
-        let homeController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeController") as! MoviesViewController
+        let homeController = MoviesViewController()
         homeController.moviesAPI = moviesAPI
         homeController.movieSessionsAPI = movieSessionsAPI
         

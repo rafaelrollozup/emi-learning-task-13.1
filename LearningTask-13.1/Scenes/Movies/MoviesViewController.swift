@@ -7,7 +7,37 @@
 
 import UIKit
 
-class MoviesViewController: UICollectionViewController {
+class MoviesViewController: UIViewController {
+    // MARK: - Subviews
+    
+    private static var layout: UICollectionViewFlowLayout {
+        let baseItemSize = CGSize(width: 180, height: 314.5)
+        let baseHeaderSize = CGSize(width: .zero, height: 50)
+        let sectionInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = baseItemSize
+        layout.headerReferenceSize = baseHeaderSize
+        layout.minimumInteritemSpacing = 16
+        layout.minimumLineSpacing = 24
+        layout.sectionInset = sectionInsets
+        return layout
+    }
+    
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: MoviesViewController.layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(MovieViewCell.self, forCellWithReuseIdentifier: MovieViewCell.reuseId)
+        collectionView.register(MovieSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MovieSectionHeaderView.reuseId)
+        collectionView.showsVerticalScrollIndicator = true
+        collectionView.backgroundColor = .tertiarySystemBackground
+        return collectionView
+    }()
+    
+    // MARK: - Properties
     
     var moviesAPI: MoviesAPI?
     var movieSessionsAPI: MovieSessionsAPI?
@@ -17,7 +47,12 @@ class MoviesViewController: UICollectionViewController {
             collectionView.reloadData()
         }
     }
-
+    
+    override func loadView() {
+        super.loadView()
+        setup()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         applyTheme()
@@ -31,29 +66,40 @@ class MoviesViewController: UICollectionViewController {
         movies = moviesAPI.loadMovies()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "seeMovieSessionsSegue" else { return }
+    func navigateToMovieSessions(with movie: Movie) {
+//        let controller = MovieSessionsViewController()
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSessionsViewController") as! MovieSessionsViewController
         
-        guard let cell = sender as? MovieViewCell,
-              let destinationController = segue.destination as? MovieSessionsViewController else {
-            fatalError("Não foi possível executar a segue \(segue.identifier!)")
-        }
+        controller.API = movieSessionsAPI
+        controller.movie = movie
         
-        destinationController.movie = cell.movie
-        destinationController.API = movieSessionsAPI
+        navigationController?.pushViewController(controller, animated: true)
     }
 
 }
 
-// MARK: - UICollectionViewDataSource implementations
-extension MoviesViewController {
+// MARK: - ViewCode Controller
+extension MoviesViewController: ViewCode {
+
+    func addSubviews() {
+        view.addSubview(collectionView)
+    }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func addLayoutConstraints() {
+        collectionView.constrainTo(edgesOf: self.view)
+    }
+    
+}
+
+// MARK: - UICollectionViewDataSource implementations
+extension MoviesViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieViewCell", for: indexPath) as? MovieViewCell else {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieViewCell.reuseId, for: indexPath) as? MovieViewCell else {
             fatalError("Não foi possível obter uma célula para a lista de filmes em cartaz")
         }
         
@@ -63,16 +109,17 @@ extension MoviesViewController {
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "MovieSectionHeaderView", for: indexPath) as? MovieSectionHeaderView else {
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MovieSectionHeaderView.reuseId, for: indexPath) as? MovieSectionHeaderView else {
                 fatalError("Não foi possível obter view suplementar para a lista de filmes em cartaz")
             }
-            
+
             headerView.title = "Filmes em Cartaz"
             return headerView
-            
+
         default:
             fatalError("Tipo de view suplementar não suportado: \(kind)")
         }
@@ -81,11 +128,13 @@ extension MoviesViewController {
 }
 
 // MARK: - UICollectionViewDelegate implementations
-extension MoviesViewController {
+extension MoviesViewController: UICollectionViewDelegate {
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movie = movies[indexPath.row]
         print("Selecionado o filme \(movie.title)")
+        
+        navigateToMovieSessions(with: movie)
     }
     
 }
