@@ -119,10 +119,7 @@ class PurchaseSettingsTableHeaderView: UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .tertiaryLabel
-        
-        NSLayoutConstraint.activate([
-            view.heightAnchor.constraint(equalToConstant: 1)
-        ])
+        view.constrainHeight(to: 1)
         return view
     }()
     
@@ -167,10 +164,7 @@ class PurchaseSettingsTableHeaderView: UIView {
         stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.alignment = .center
-        
-        NSLayoutConstraint.activate([
-            stackView.heightAnchor.constraint(equalToConstant: 32)
-        ])
+        stackView.constrainHeight(to: 32)
         return stackView
     }()
     
@@ -213,165 +207,21 @@ class PurchaseSettingsTableHeaderView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+}
+
+extension PurchaseSettingsTableHeaderView: ViewCode {
     
-    private func setup() {
-        addTheme()
-        addViews()
-        addConstraints()
-    }
-    
-    private func addTheme() {
+    func customizeAppearance() {
         backgroundColor = .secondarySystemBackground
     }
     
-    private func addViews() {
+    func addSubviews() {
         addSubview(containerWrapperView)
     }
     
-    private func addConstraints() {
-        NSLayoutConstraint.activate([
-            containerWrapperView.topAnchor.constraint(equalTo: self.topAnchor),
-            containerWrapperView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            containerWrapperView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            containerWrapperView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-        ])
+    func addLayoutConstraints() {
+        containerWrapperView.constrainTo(edgesOf: self)
     }
-    
-    // MARK: - Subcomponents
-    private class SessionInfoItem: UIView {
-        
-        private lazy var iconImageView: UIImageView = {
-            let imageView = UIImageView()
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.contentMode = .scaleAspectFill
-            imageView.tintColor = .secondaryLabel
-            
-            NSLayoutConstraint.activate([
-                imageView.widthAnchor.constraint(equalToConstant: 20),
-                imageView.heightAnchor.constraint(equalToConstant: 20),
-            ])
-            return imageView
-        }()
-        
-        private lazy var textLabel: UILabel = {
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.font = .systemFont(ofSize: 14, weight: .light)
-            label.textColor = .secondaryLabel
-            return label
-        }()
-        
-        private lazy var contentView: UIStackView = {
-            let stackView = UIStackView(arrangedSubviews: [
-                iconImageView, textLabel
-            ])
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            stackView.axis = .horizontal
-            stackView.distribution = .fill
-            stackView.alignment = .center
-            stackView.spacing = 8
-            return stackView
-        }()
-        
-        var icon: UIImage? {
-            didSet {
-                iconImageView.image = icon
-            }
-        }
-        
-        var text: String? {
-            didSet {
-                textLabel.text = text
-            }
-        }
-        
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            setup()
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-        private func setup() {
-            addViews()
-            addConstraints()
-        }
-        
-        private func addViews() {
-            addSubview(contentView)
-        }
-        
-        private func addConstraints() {
-            NSLayoutConstraint.activate([
-                contentView.topAnchor.constraint(equalTo: self.topAnchor),
-                contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            ])
-        }
-    }
-    
-    private class SessionInfoTag: UIView {
-        // MARK: Subviews
-        
-        private lazy var textLabel: UILabel = {
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.textColor = .white
-            label.font = .systemFont(ofSize: 12, weight: .bold)
-            label.textAlignment = .center
-            return label
-        }()
-        
-        // MARK: Properties
 
-        var info: String? {
-            didSet {
-                textLabel.text = info
-            }
-        }
-        
-        // MARK: Initialization
-        
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            setup()
-        }
-
-        required init(coder: NSCoder) {
-            fatalError()
-        }
-
-        private func setup() {
-            applyTheme()
-            addViews()
-            addConstraints()
-        }
-
-        private func applyTheme() {
-            backgroundColor = .systemOrange
-            layer.masksToBounds = true
-            layer.cornerRadius = 4
-        }
-        
-        private func addViews() {
-            addSubview(textLabel)
-        }
-        
-        func addConstraints() {
-            NSLayoutConstraint.activate([
-                heightAnchor.constraint(equalToConstant: 20),
-            ])
-            
-            NSLayoutConstraint.activate([
-                textLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                textLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
-                textLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
-            ])
-        }
-    }
-    
 }
-

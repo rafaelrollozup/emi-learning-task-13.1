@@ -68,6 +68,40 @@ extension UIView {
         NSLayoutConstraint.activate(constraints)
     }
     
+    /// Constrains the leading and trailing of your view code component to the same edges of the target view
+    ///
+    /// - Parameters:
+    ///     - view: The target view to constrain to
+    ///     - horizontalMargin: The margin to apply as the constant of the leading and trailing anchor contraints
+    ///
+    func constrainHorizontally(to view: UIView,
+                               withMargins horizontalMargin: CGFloat = 0) {
+        let constraints = [
+            leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: horizontalMargin),
+            trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontalMargin),
+        ]
+
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    // MARK: - Positioning Helpers
+    
+    /// Positions your view code component centering on the Y axis of the target view
+    ///
+    /// - Parameters:
+    ///     - view: The target view to anchor center vertically
+    ///     - offset: A float representing the offset to apply as the constant of the
+    ///     centerY anchor constraint
+    ///
+    @discardableResult
+    func anchorToCenterY(of view: UIView, withOffset offset: CGFloat = .zero) -> NSLayoutConstraint {
+        let constraint = self.centerYAnchor
+            .constraint(equalTo: view.centerYAnchor, constant: offset)
+
+        NSLayoutConstraint.activate([constraint])
+        return constraint
+    }
+    
     // MARK: - Sizing Helpers
     
     /// Constrains the size of your view code component

@@ -19,6 +19,8 @@
 		58426B1A297330C400F547E5 /* HeaderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B19297330C400F547E5 /* HeaderContentView.swift */; };
 		58426B1C2973326100F547E5 /* MovieStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B1B2973326100F547E5 /* MovieStatView.swift */; };
 		58426B1E2973334400F547E5 /* MovieRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B1D2973334400F547E5 /* MovieRatingView.swift */; };
+		58426B232973361200F547E5 /* SessionInfoTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B222973361200F547E5 /* SessionInfoTag.swift */; };
+		58426B25297337A300F547E5 /* SessionInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B24297337A300F547E5 /* SessionInfoItem.swift */; };
 		587D9E1D2886D780005F9CA8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D9E1C2886D780005F9CA8 /* Theme.swift */; };
 		587D9E212886E2BE005F9CA8 /* PurchaseSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D9E202886E2BE005F9CA8 /* PurchaseSettingsViewController.swift */; };
 		587D9E232886E337005F9CA8 /* PurchaseSettingsMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D9E222886E337005F9CA8 /* PurchaseSettingsMenuItemCell.swift */; };
@@ -56,6 +58,8 @@
 		58426B19297330C400F547E5 /* HeaderContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderContentView.swift; sourceTree = "<group>"; };
 		58426B1B2973326100F547E5 /* MovieStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStatView.swift; sourceTree = "<group>"; };
 		58426B1D2973334400F547E5 /* MovieRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRatingView.swift; sourceTree = "<group>"; };
+		58426B222973361200F547E5 /* SessionInfoTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInfoTag.swift; sourceTree = "<group>"; };
+		58426B24297337A300F547E5 /* SessionInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInfoItem.swift; sourceTree = "<group>"; };
 		587D9E1C2886D780005F9CA8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		587D9E202886E2BE005F9CA8 /* PurchaseSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSettingsViewController.swift; sourceTree = "<group>"; };
 		587D9E222886E337005F9CA8 /* PurchaseSettingsMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSettingsMenuItemCell.swift; sourceTree = "<group>"; };
@@ -138,6 +142,24 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		58426B20297335D000F547E5 /* PurchaseSettingsTableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				5898D99C286E53E200C5B6AB /* PurchaseSettingsTableHeaderView.swift */,
+				58426B21297335F800F547E5 /* Components */,
+			);
+			path = PurchaseSettingsTableHeaderView;
+			sourceTree = "<group>";
+		};
+		58426B21297335F800F547E5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				58426B222973361200F547E5 /* SessionInfoTag.swift */,
+				58426B24297337A300F547E5 /* SessionInfoItem.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		587D9E1E2886E279005F9CA8 /* PurchaseSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +173,7 @@
 		587D9E1F2886E29E005F9CA8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5898D99C286E53E200C5B6AB /* PurchaseSettingsTableHeaderView.swift */,
+				58426B20297335D000F547E5 /* PurchaseSettingsTableHeaderView */,
 				587D9E222886E337005F9CA8 /* PurchaseSettingsMenuItemCell.swift */,
 			);
 			path = View;
@@ -393,7 +415,9 @@
 				589AA1492853852D003C69BE /* SceneDelegate.swift in Sources */,
 				5898D99D286E53E200C5B6AB /* PurchaseSettingsTableHeaderView.swift in Sources */,
 				58426B1129718DB000F547E5 /* ImageDownload.swift in Sources */,
+				58426B232973361200F547E5 /* SessionInfoTag.swift in Sources */,
 				587D9E1D2886D780005F9CA8 /* Theme.swift in Sources */,
+				58426B25297337A300F547E5 /* SessionInfoItem.swift in Sources */,
 				58A7684F285389B8007FB4D3 /* SessionViewCell.swift in Sources */,
 				58123EDB2857A3FA00114CE5 /* MovieViewCell.swift in Sources */,
 				587D9E232886E337005F9CA8 /* PurchaseSettingsMenuItemCell.swift in Sources */,
