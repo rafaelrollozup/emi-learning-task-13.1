@@ -15,6 +15,7 @@
 		58426B0F29718CF900F547E5 /* ImageFetching+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B0E29718CF900F547E5 /* ImageFetching+UIImageView.swift */; };
 		58426B1129718DB000F547E5 /* ImageDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B1029718DB000F547E5 /* ImageDownload.swift */; };
 		58426B14297324D000F547E5 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B13297324D000F547E5 /* ViewCode.swift */; };
+		58426B162973267E00F547E5 /* ConstraintHelpers+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58426B152973267E00F547E5 /* ConstraintHelpers+UIView.swift */; };
 		587D9E1D2886D780005F9CA8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D9E1C2886D780005F9CA8 /* Theme.swift */; };
 		587D9E212886E2BE005F9CA8 /* PurchaseSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D9E202886E2BE005F9CA8 /* PurchaseSettingsViewController.swift */; };
 		587D9E232886E337005F9CA8 /* PurchaseSettingsMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D9E222886E337005F9CA8 /* PurchaseSettingsMenuItemCell.swift */; };
@@ -48,6 +49,7 @@
 		58426B0E29718CF900F547E5 /* ImageFetching+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageFetching+UIImageView.swift"; sourceTree = "<group>"; };
 		58426B1029718DB000F547E5 /* ImageDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownload.swift; sourceTree = "<group>"; };
 		58426B13297324D000F547E5 /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
+		58426B152973267E00F547E5 /* ConstraintHelpers+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConstraintHelpers+UIView.swift"; sourceTree = "<group>"; };
 		587D9E1C2886D780005F9CA8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		587D9E202886E2BE005F9CA8 /* PurchaseSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSettingsViewController.swift; sourceTree = "<group>"; };
 		587D9E222886E337005F9CA8 /* PurchaseSettingsMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSettingsMenuItemCell.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				58A7683A28538816007FB4D3 /* TimeInterval+DateComponentsFormatter.swift */,
 				58426B0C29718CBF00F547E5 /* SimpleAlert+UIAlertController.swift */,
 				58426B0E29718CF900F547E5 /* ImageFetching+UIImageView.swift */,
+				58426B152973267E00F547E5 /* ConstraintHelpers+UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				58A76839285387F3007FB4D3 /* CustomPatterns+DateFormatter.swift in Sources */,
 				58A7684B28538965007FB4D3 /* SessionsTableHeaderView.swift in Sources */,
 				58A7684328538887007FB4D3 /* Session.swift in Sources */,
+				58426B162973267E00F547E5 /* ConstraintHelpers+UIView.swift in Sources */,
 				5881DB4E285A1FC100D4B20F /* LogoTitleView.swift in Sources */,
 				58A7683B28538816007FB4D3 /* TimeInterval+DateComponentsFormatter.swift in Sources */,
 				58123EDD2857A43700114CE5 /* MovieSectionHeaderView.swift in Sources */,
