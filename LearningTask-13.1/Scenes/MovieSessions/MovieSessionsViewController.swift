@@ -92,8 +92,8 @@ extension MovieSessionsViewController {
         }
         
         let cinema = sessions[section].cinema
-        headerView.setup(from: cinema)
         
+        headerView.cinema = cinema
         return headerView
     }
     

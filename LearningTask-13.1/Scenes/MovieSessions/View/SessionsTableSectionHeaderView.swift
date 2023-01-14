@@ -51,6 +51,13 @@ class SessionsTableSectionHeaderView: UITableViewHeaderFooterView {
         stack.layoutMargins = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
         return stack
     }()
+    
+    var cinema: Cinema? {
+        didSet {
+            guard let cinema = cinema else { return }
+            label.text = cinema.name
+        }
+    }
         
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -60,31 +67,17 @@ class SessionsTableSectionHeaderView: UITableViewHeaderFooterView {
     required init?(coder: NSCoder) {
         fatalError()
     }
+}
+
+extension SessionsTableSectionHeaderView: ViewCode {
     
-    private func setup() {
-        addViews()
-        addContraints()
-    }
-    
-    private func addViews() {
+    func addSubviews() {
         addSubview(containerStackView)
     }
     
-    private func addContraints() {
-        NSLayoutConstraint.activate([
-            heightAnchor.constraint(equalToConstant: Self.heightConstant)
-        ])
-        
-        NSLayoutConstraint.activate([
-            containerStackView.topAnchor.constraint(equalTo: self.topAnchor),
-            containerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            containerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            containerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-        ])
+    func addLayoutConstraints() {
+        self.constrainHeight(to: Self.heightConstant)
+        containerStackView.constrainTo(edgesOf: self)
     }
     
-    func setup(from cinema: Cinema) {
-        label.text = cinema.name
-    }
 }
-
