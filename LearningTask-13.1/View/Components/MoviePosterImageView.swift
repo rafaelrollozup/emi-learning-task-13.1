@@ -30,22 +30,6 @@ class MoviePosterImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setup() {
-        addTheme()
-        addConstraints()
-    }
-    
-    private func addTheme() {
-        contentMode = .scaleAspectFill
-    }
-    
-    private func addConstraints() {
-        NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalToConstant: Self.posterSize.width),
-            heightAnchor.constraint(equalToConstant: Self.posterSize.height)
-        ])
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -59,4 +43,19 @@ class MoviePosterImageView: UIImageView {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: -1)
     }
+}
+
+extension MoviePosterImageView: ViewCode {
+    
+    func customizeAppearance() {
+        contentMode = .scaleAspectFill
+    }
+
+    func addLayoutConstraints() {
+        NSLayoutConstraint.activate([
+            widthAnchor.constraint(equalToConstant: Self.posterSize.width),
+            heightAnchor.constraint(equalToConstant: Self.posterSize.height)
+        ])
+    }
+    
 }
