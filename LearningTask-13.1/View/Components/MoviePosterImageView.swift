@@ -10,10 +10,7 @@ import UIKit
 class MoviePosterImageView: UIImageView {
 
     private static let heightConstant: CGFloat = 150
-    private static let aspectRatio: Double = 27 / 40
-    private static let posterSize = CGSize(width: heightConstant * aspectRatio,
-                                           height: heightConstant)
-
+    
     var shadow: Bool = false
     
     convenience init(byDownloading imageURL: URL) {
@@ -35,7 +32,7 @@ class MoviePosterImageView: UIImageView {
         
         guard shadow else { return }
 
-        let posterRect = CGRect(origin: .zero, size: Self.posterSize)
+        let posterRect = CGRect(origin: .zero, size: size)
         
         layer.shadowPath = UIBezierPath(rect: posterRect).cgPath
         layer.shadowRadius = 16.0
@@ -47,15 +44,19 @@ class MoviePosterImageView: UIImageView {
 
 extension MoviePosterImageView: ViewCode {
     
+    fileprivate static let aspectRatio: Double = 27 / 40
+    
+    var size: CGSize {
+        return CGSize(width: Self.heightConstant * Self.aspectRatio,
+                      height: Self.heightConstant)
+    }
+
     func customizeAppearance() {
         contentMode = .scaleAspectFill
     }
 
     func addLayoutConstraints() {
-        NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalToConstant: Self.posterSize.width),
-            heightAnchor.constraint(equalToConstant: Self.posterSize.height)
-        ])
+        self.constrainSize(to: size)
     }
     
 }

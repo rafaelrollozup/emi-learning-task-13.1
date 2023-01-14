@@ -42,6 +42,10 @@ class LogoTitleView: UIStackView {
 
 extension LogoTitleView: ViewCode {
     
+    var logoSize: CGSize {
+        return CGSize(width: 32, height: 32)
+    }
+    
     func customizeAppearance() {
         axis = .horizontal
         distribution = .fill
@@ -55,10 +59,7 @@ extension LogoTitleView: ViewCode {
     }
     
     func addLayoutConstraints() {
-        NSLayoutConstraint.activate([
-            logoImageView.widthAnchor.constraint(equalToConstant: 32),
-            logoImageView.heightAnchor.constraint(equalToConstant: 32),
-        ])
+        logoImageView.constrainSize(to: logoSize)
     }
     
 }
