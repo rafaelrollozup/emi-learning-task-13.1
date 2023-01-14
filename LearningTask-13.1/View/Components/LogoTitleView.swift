@@ -38,25 +38,23 @@ class LogoTitleView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setup() {
-        addTheme()
-        addViews()
-        addConstraints()
-    }
+}
+
+extension LogoTitleView: ViewCode {
     
-    private func addTheme() {
+    func customizeAppearance() {
         axis = .horizontal
         distribution = .fill
         alignment = .center
         spacing = 8
     }
     
-    private func addViews() {
+    func addSubviews() {
         addArrangedSubview(logoImageView)
         addArrangedSubview(titleLabel)
     }
     
-    private func addConstraints() {
+    func addLayoutConstraints() {
         NSLayoutConstraint.activate([
             logoImageView.widthAnchor.constraint(equalToConstant: 32),
             logoImageView.heightAnchor.constraint(equalToConstant: 32),
@@ -64,5 +62,3 @@ class LogoTitleView: UIStackView {
     }
     
 }
-
-
