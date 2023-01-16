@@ -67,9 +67,7 @@ class MoviesViewController: UIViewController {
     }
     
     func navigateToMovieSessions(with movie: Movie) {
-//        let controller = MovieSessionsViewController()
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSessionsViewController") as! MovieSessionsViewController
-        
+        let controller = MovieSessionsViewController()
         controller.API = movieSessionsAPI
         controller.movie = movie
         

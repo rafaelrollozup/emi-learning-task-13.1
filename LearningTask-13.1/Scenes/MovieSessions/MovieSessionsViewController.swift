@@ -7,8 +7,22 @@
 
 import UIKit
 
-class MovieSessionsViewController: UITableViewController {
+class MovieSessionsViewController: UIViewController {
     
+    // MARK: - Subviews
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = .tertiarySystemBackground
+        tableView.register(SessionsTableSectionHeaderView.self,
+                        forHeaderFooterViewReuseIdentifier: SessionsTableSectionHeaderView.reuseId)
+        tableView.register(SessionViewCell.self, forCellReuseIdentifier: SessionViewCell.reuseId)
+        return tableView
+    }()
+    
+    // MARK: - Properties
     var API: MovieSessionsAPI?
     
     var movie: Movie!
@@ -19,11 +33,16 @@ class MovieSessionsViewController: UITableViewController {
         }
     }
     
+    override func loadView() {
+        super.loadView()
+        setup()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
         
         // Do any additional setup after loading the view.
-        setupViews()
         loadSessions()
     }
     
@@ -31,9 +50,6 @@ class MovieSessionsViewController: UITableViewController {
         navigationItem.title = movie.shortTitle
         
         tableView.tableHeaderView = SessionsTableHeaderView.build(from: movie)
-        tableView.register(SessionsTableSectionHeaderView.self,
-                           forHeaderFooterViewReuseIdentifier: SessionsTableSectionHeaderView.reuseId)
-        tableView.sectionHeaderHeight = SessionsTableSectionHeaderView.heightConstant
     }
     
     func loadSessions() {
@@ -41,32 +57,42 @@ class MovieSessionsViewController: UITableViewController {
         sessions = API.getSessionBy(movie)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "seePurchaseSettingsSegue" else { return }
+    func navigateToPurchaseSettings(with session: Session) {
+//        let controller = PurchaseSettingsViewController()
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PurchaseSettingsViewController") as! PurchaseSettingsViewController
         
-        guard let cell = sender as? SessionViewCell,
-              let destinationController = segue.destination as? PurchaseSettingsViewController else {
-            fatalError("Não foi possível executar a segue \(segue.identifier!)")
-        }
+        controller.movieSession = session
         
-        destinationController.movieSession = cell.movieSession
+        navigationController?.present(controller, animated: true)
     }
 
 }
 
-// MARK: - UITableViewDataSource Implementations
-extension MovieSessionsViewController {
+extension MovieSessionsViewController: ViewCode {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func addSubviews() {
+        view.addSubview(tableView)
+    }
+    
+    func addLayoutConstraints() {
+        tableView.constrainTo(edgesOf: self.view)
+    }
+    
+}
+
+// MARK: - UITableViewDataSource Implementations
+extension MovieSessionsViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return sessions.count
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sessions[section].all.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SessionCell", for: indexPath) as? SessionViewCell else {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SessionViewCell.reuseId, for: indexPath) as? SessionViewCell else {
             fatalError("Não foi possível recuperar celula para tabela")
         }
         
@@ -79,14 +105,16 @@ extension MovieSessionsViewController {
 }
 
 // MARK: - UITableViewDelegate Implementations
-extension MovieSessionsViewController {
+extension MovieSessionsViewController: UITableViewDelegate {
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("navega para compra de ingresso")
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let movieSession = sessions[indexPath.section].all[indexPath.row]
+        navigateToPurchaseSettings(with: movieSession)
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: SessionsTableSectionHeaderView.reuseId) as? SessionsTableSectionHeaderView else {
             fatalError("Não foi possível recuperar celula para tabela")
         }

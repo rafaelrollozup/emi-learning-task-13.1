@@ -121,8 +121,6 @@ class HeaderContentView: UIView {
         stack.alignment = .leading
         stack.distribution = .fill
         stack.spacing = 20
-        stack.isLayoutMarginsRelativeArrangement = false
-        stack.layoutMargins = UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24)
         
         stack.addArrangedSubview(titleLabel)
         stack.addArrangedSubview(controlsStackView)

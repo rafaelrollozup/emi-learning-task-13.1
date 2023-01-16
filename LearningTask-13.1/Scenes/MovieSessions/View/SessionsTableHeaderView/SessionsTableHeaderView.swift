@@ -49,7 +49,7 @@ class SessionsTableHeaderView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondaryLabel
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.font = .systemFont(ofSize: 12, weight: .light)
         label.textAlignment = .center
         label.text = Calendar.current.isDateInToday(self.date)
             ? "Hoje"
@@ -87,7 +87,7 @@ class SessionsTableHeaderView: UIView {
         stack.alignment = .center
         stack.distribution = .equalCentering
         stack.isLayoutMarginsRelativeArrangement = true
-        stack.layoutMargins = UIEdgeInsets(top: 8, left: 24, bottom: 8, right: 24)
+        stack.layoutMargins = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
         stack.constrainHeight(to: 56)
         
         stack.addArrangedSubview(backDateButton)
@@ -129,7 +129,6 @@ class SessionsTableHeaderView: UIView {
             Consulte a documentação da API da classe UITableView e sua propriedade `tableHeaderView`.
         """)
     }
-    
 }
 
 extension SessionsTableHeaderView: ViewCode {
