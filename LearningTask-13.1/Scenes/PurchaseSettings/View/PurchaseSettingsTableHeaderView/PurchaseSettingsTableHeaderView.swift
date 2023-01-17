@@ -10,22 +10,11 @@ import UIKit
 class PurchaseSettingsTableHeaderView: UIView {
     
     static func build(from movieSession: Session) -> PurchaseSettingsTableHeaderView {
-        let frame = CGRect(x: 0, y: 0, width: 0, height: 350)
+        let frame = CGRect(x: 0, y: 0, width: 0, height: 286)
         
         let headerView = PurchaseSettingsTableHeaderView.init(with: frame, and: movieSession)
         return headerView
     }
-    
-    private static let baseLayoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-    
-    private lazy var logoTitleView: LogoTitleView = {
-        let view = LogoTitleView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .tertiarySystemBackground
-        view.isLayoutMarginsRelativeArrangement = true
-        view.layoutMargins = Self.baseLayoutMargins
-        return view
-    }()
     
     private lazy var moviePosterImageView: MoviePosterImageView = {
         let imageView = MoviePosterImageView.init(byDownloading: movieSession.movie.posterImageURI)
@@ -180,19 +169,7 @@ class PurchaseSettingsTableHeaderView: UIView {
         stackView.alignment = .fill
         stackView.spacing = 16
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = Self.baseLayoutMargins
-        return stackView
-    }()
-    
-    private lazy var containerWrapperView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            logoTitleView,
-            containerView
-        ])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .fill
+        stackView.layoutMargins = .init(top: 16, left: 16, bottom: 16, right: 16)
         return stackView
     }()
 
@@ -217,11 +194,11 @@ extension PurchaseSettingsTableHeaderView: ViewCode {
     }
     
     func addSubviews() {
-        addSubview(containerWrapperView)
+        addSubview(containerView)
     }
     
     func addLayoutConstraints() {
-        containerWrapperView.constrainTo(edgesOf: self)
+        containerView.constrainTo(edgesOf: self)
     }
 
 }

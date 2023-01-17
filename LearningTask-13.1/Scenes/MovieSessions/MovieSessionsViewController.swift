@@ -58,9 +58,7 @@ class MovieSessionsViewController: UIViewController {
     }
     
     func navigateToPurchaseSettings(with session: Session) {
-//        let controller = PurchaseSettingsViewController()
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PurchaseSettingsViewController") as! PurchaseSettingsViewController
-        
+        let controller = PurchaseSettingsViewController()
         controller.movieSession = session
         
         navigationController?.present(controller, animated: true)
