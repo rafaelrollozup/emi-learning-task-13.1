@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SessionInfoItem: UIView {
+class InfoIconned: UIView {
     
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -61,7 +61,7 @@ class SessionInfoItem: UIView {
     
 }
 
-extension SessionInfoItem: ViewCode {
+extension InfoIconned: ViewCode {
     
     func addSubviews() {
         addSubview(contentView)

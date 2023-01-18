@@ -6,7 +6,7 @@
 
 import UIKit
 
-class SessionInfoTag: UIView {
+class InfoTag: UIView {
     // MARK: Subviews
     
     private lazy var textLabel: UILabel = {
@@ -39,7 +39,7 @@ class SessionInfoTag: UIView {
 
 }
 
-extension SessionInfoTag: ViewCode {
+extension InfoTag: ViewCode {
     
     func customizeAppearance() {
         backgroundColor = .systemOrange

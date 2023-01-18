@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MoviePosterImageView: UIImageView {
+class PosterImageView: UIImageView {
 
     private static let heightConstant: CGFloat = 150
     
@@ -42,7 +42,7 @@ class MoviePosterImageView: UIImageView {
     }
 }
 
-extension MoviePosterImageView: ViewCode {
+extension PosterImageView: ViewCode {
     
     fileprivate static let aspectRatio: Double = 27 / 40
     

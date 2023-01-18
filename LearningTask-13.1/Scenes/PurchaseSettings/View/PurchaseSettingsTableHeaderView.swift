@@ -16,8 +16,8 @@ class PurchaseSettingsTableHeaderView: UIView {
         return headerView
     }
     
-    private lazy var moviePosterImageView: MoviePosterImageView = {
-        let imageView = MoviePosterImageView.init(byDownloading: movieSession.movie.posterImageURI)
+    private lazy var moviePosterImageView: PosterImageView = {
+        let imageView = PosterImageView.init(byDownloading: movieSession.movie.posterImageURI)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -31,16 +31,16 @@ class PurchaseSettingsTableHeaderView: UIView {
         return label
     }()
     
-    private lazy var sessionLocationInfoItem: SessionInfoItem = {
-        let view = SessionInfoItem()
+    private lazy var sessionLocationInfoItem: InfoIconned = {
+        let view = InfoIconned()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.icon = UIImage(named: "LocationPin")
         view.text = movieSession.cinema?.name
         return view
     }()
     
-    private lazy var dateInfoItem: SessionInfoItem = {
-        let view = SessionInfoItem()
+    private lazy var dateInfoItem: InfoIconned = {
+        let view = InfoIconned()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.icon = UIImage(named: "Calendar")
         view.text = DateFormatter.format(date: movieSession.dateTime,
@@ -48,15 +48,15 @@ class PurchaseSettingsTableHeaderView: UIView {
         return view
     }()
     
-    private lazy var sessionTypeInfoTag: SessionInfoTag = {
-        let label = SessionInfoTag()
+    private lazy var sessionTypeInfoTag: InfoTag = {
+        let label = InfoTag()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.info = movieSession.type.rawValue
         return label
     }()
     
-    private lazy var sessionVideoTypeInfoTag: SessionInfoTag = {
-        let label = SessionInfoTag()
+    private lazy var sessionVideoTypeInfoTag: InfoTag = {
+        let label = InfoTag()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.info = "2d"
         return label

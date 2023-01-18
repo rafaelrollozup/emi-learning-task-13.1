@@ -18,8 +18,8 @@ class HeaderContentView: UIView {
         return imageView
     }()
     
-    private lazy var posterImageView: MoviePosterImageView = {
-        let imageView = MoviePosterImageView.init(byDownloading: movie.posterImageURI)
+    private lazy var posterImageView: PosterImageView = {
+        let imageView = PosterImageView.init(byDownloading: movie.posterImageURI)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.shadow = true
         return imageView
